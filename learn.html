@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vision Science, Cones, Rods & Spectrum Perception | TraitCompass</title>
+  <meta name="description" content="In-depth guide to the anatomy of human vision, retinal photoreceptors (S, M, L cones and rods), the genetics of color blindness, and interactive spectral perception tools.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230d9488'/><circle cx='38' cy='45' r='14' fill='%23f59e0b'/><circle cx='62' cy='55' r='14' fill='%23ef4444'/></svg>">
+</head>
+<body>
+  <a href="#learn-content" class="skip-to-content">Skip to Educational Content</a>
+
+  <!-- Embedded SVG Color Blindness Simulation Matrices -->
+  <svg style="display: none;" aria-hidden="true">
+    <defs>
+      <filter id="protanopia-filter">
+        <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <filter id="deuteranopia-filter">
+        <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <filter id="tritanopia-filter">
+        <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Sticky Header Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+            <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span class="brand-title">TraitCompass</span>
+          <span class="brand-subtitle">Health & Vision Screening</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link">Color Vision Test</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link" aria-haspopup="true">Health Articles ▾</a>
+            <ul class="dropdown-menu">
+              <li><a href="social-anxiety-triggers.html" class="dropdown-item"><strong>Social Anxiety Triggers</strong><small>Assessment & toolkit</small></a></li>
+              <li><a href="sociopath-traits.html" class="dropdown-item"><strong>Sociopath & ASPD Traits</strong><small>Clinical checklist & red flags</small></a></li>
+              <li><a href="high-functioning-depression.html" class="dropdown-item"><strong>High-Functioning Depression</strong><small>Symptom guide & screener</small></a></li>
+            </ul>
+          </li>
+          <li><a href="learn.html" class="nav-link active">Vision Science</a></li>
+          <li><a href="about.html" class="nav-link">About & Disclaimers</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="privacy.html" class="nav-link">Privacy</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="contrastToggle" title="Toggle High Contrast Mode" aria-label="Toggle High Contrast Mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 1 0 20Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" class="icon-btn" id="themeToggle" title="Toggle Dark/Light Theme" aria-label="Toggle Dark/Light Theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        </button>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content" id="learn-content">
+    <div class="container">
+      <div class="article-layout">
+        
+        <!-- Main Article Content -->
+        <article class="article-main">
+          <header class="article-header">
+            <div class="article-meta">
+              <span class="badge badge-primary">Neurobiology & Optics</span>
+              <span>Updated: October 2024</span>
+              <span>12 min read</span>
+            </div>
+            <h1>The Science of Human Color Vision: Cones, Rods, and Spectrum Perception</h1>
+            <p class="lead">
+              How the human retina transforms photons of electromagnetic radiation between 380 nm and 740 nm into the rich palette of conscious chromatic perception.
+            </p>
+          </header>
+
+          <div class="article-body">
+            <!-- Educational Notice -->
+            <aside class="clinical-notice" role="note" style="margin-bottom: 2rem;">
+              <div class="notice-icon">ℹ️</div>
+              <div>
+                <strong>Educational Vision Science Notice:</strong>
+                This article provides educational scientific background on retinal anatomy and color perception. It is intended for general informational purposes only and does not constitute ophthalmological or medical advice.
+              </div>
+            </aside>
+            <h2>1. Anatomy of the Photoreceptor Mosaic</h2>
+            <p>
+              The human retina houses approximately 120 million rods and 6 to 7 million cones. While rods mediate scotopic (dim light, monochromatic) vision with high sensitivity, cones are concentrated in the fovea centralis and mediate photopic (daylight) high-acuity color vision.
+            </p>
+
+            <div class="callout-box">
+              <h4 style="margin-bottom: 0.5rem;">The Three Cone Types (Trichromatic Theory):</h4>
+              <ul>
+                <li><strong>S-Cones (Cyanolabe):</strong> Peak absorption at <strong>~420 nm</strong> (Short-wavelength / Violet-Blue). Represents ~5–10% of retinal cones. Coded on autosomal <em>Chromosome 7</em> (OPN1SW gene).</li>
+                <li><strong>M-Cones (Chlorolabe):</strong> Peak absorption at <strong>~534 nm</strong> (Medium-wavelength / Green). Located on the <em>X-chromosome</em> (OPN1MW gene cluster).</li>
+                <li><strong>L-Cones (Erythrolabe):</strong> Peak absorption at <strong>~564 nm</strong> (Long-wavelength / Yellow-Red). Located directly adjacent on the <em>X-chromosome</em> (OPN1LW gene).</li>
+              </ul>
+            </div>
+
+            <p>
+              Notice that the peak absorptions of M-cones (534 nm) and L-cones (564 nm) are separated by only 30 nanometers! Because their genetic sequences share over 98% nucleotide homology, unequal crossing-over during meiosis frequently alters or deletes photopigment genes, leading to red-green color vision deficiencies.
+            </p>
+
+            <h2>2. Genetics of Color Vision Deficiency</h2>
+            <p>
+              Congenital red-green color blindness is an <strong>X-linked recessive trait</strong>. Because males inherit a single X chromosome from their mother (XY), a mutation in either the L-cone or M-cone opsin gene results in phenotypic color blindness. Females (XX) possess two X chromosomes, meaning a normal gene on one X chromosome typically compensates for a defective gene on the other:
+            </p>
+
+            <ul>
+              <li><strong>Males:</strong> Approximately <strong>8% of Northern European ancestry</strong> (and 4–6% of African and Asian ancestry) exhibit red-green color deficiency.</li>
+              <li><strong>Females:</strong> Approximately <strong>0.5%</strong> are colorblind, while ~15% are asymptomatic heterozygous carriers (some of whom display tetrachromatic nuances).</li>
+            </ul>
+
+            <!-- Ad Slot Native -->
+            <div class="ad-slot-wrapper">
+              <div class="ad-slot ad-slot-native"></div>
+            </div>
+
+            <h2>3. Spectrum Classification of Color Deficiencies</h2>
+            <p>
+              Color vision variations are categorized by whether a cone type is merely altered (anomalous trichromacy) or entirely absent (dichromacy):
+            </p>
+
+            <div class="table-responsive" style="margin: 1.5rem 0;">
+              <table class="breakdown-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Affected Photoreceptor</th>
+                    <th>Prevalence</th>
+                    <th>Visual Experience</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Deuteranomaly</strong></td>
+                    <td>M-Cones shifted toward red</td>
+                    <td>~5.0% of males</td>
+                    <td>Greens appear washed out or confused with brownish tones. Most common form.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Deuteranopia</strong></td>
+                    <td>M-Cones completely absent</td>
+                    <td>~1.0% of males</td>
+                    <td>Complete inability to discriminate between red and green spectral bands.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Protanomaly</strong></td>
+                    <td>L-Cones shifted toward green</td>
+                    <td>~1.0% of males</td>
+                    <td>Red appears dimmer and less vibrant; confused with dark browns and greens.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Protanopia</strong></td>
+                    <td>L-Cones completely absent</td>
+                    <td>~1.0% of males</td>
+                    <td>Red colors appear black or dark grey; profound red-green confusion.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tritanopia / Tritanomaly</strong></td>
+                    <td>S-Cones absent or altered</td>
+                    <td>&lt;0.01% (Rare)</td>
+                    <td>Blue-yellow confusion. Equal prevalence across males and females (autosomal).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Achromatopsia</strong></td>
+                    <td>All cone function absent</td>
+                    <td>1 in 30,000</td>
+                    <td>Total color blindness; visual acuity reduced; extreme photophobia (day blindness).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 id="simulator">4. Real-Time Spectral Perception Simulator</h2>
+            <p>
+              Experience how everyday scenes and color swatches appear to individuals with Protanopia, Deuteranopia, Tritanopia, and Achromatopsia using mathematically modeled spectral transformation filters:
+            </p>
+
+            <!-- Interactive Palette Box -->
+            <div class="sim-preview-box" style="margin: 2rem 0; text-align: left;">
+              <h4 style="margin-bottom: 0.5rem;">Interactive Color Swatch Comparator</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Toggle the spectral simulation modes to observe how high-contrast color pairs collapse along dichromatic confusion lines:
+              </p>
+
+              <!-- Color Palette Samples -->
+              <div id="demoSwatchContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 1.5rem; transition: filter 0.3s ease;">
+                <div style="background: #ef4444; height: 90px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; color: white; font-weight: 700; font-size: 0.75rem;">
+                  Crimson Red<span style="font-weight: 400; font-size: 0.65rem;">#EF4444</span>
+                </div>
+                <div style="background: #10b981; height: 90px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; color: white; font-weight: 700; font-size: 0.75rem;">
+                  Emerald Green<span style="font-weight: 400; font-size: 0.65rem;">#10B981</span>
+                </div>
+                <div style="background: #f59e0b; height: 90px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; color: white; font-weight: 700; font-size: 0.75rem;">
+                  Amber Gold<span style="font-weight: 400; font-size: 0.65rem;">#F59E0B</span>
+                </div>
+                <div style="background: #3b82f6; height: 90px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; color: white; font-weight: 700; font-size: 0.75rem;">
+                  Cobalt Blue<span style="font-weight: 400; font-size: 0.65rem;">#3B82F6</span>
+                </div>
+                <div style="background: #8b5cf6; height: 90px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; color: white; font-weight: 700; font-size: 0.75rem;">
+                  Violet Purple<span style="font-weight: 400; font-size: 0.65rem;">#8B5CF6</span>
+                </div>
+              </div>
+
+              <!-- Filter Selector Buttons -->
+              <div class="sim-controls">
+                <button type="button" class="sim-btn active" onclick="setDemoFilter('normal', this)">Trichromacy (Normal)</button>
+                <button type="button" class="sim-btn" onclick="setDemoFilter('protanopia', this)">Protanopia (Red-Blind)</button>
+                <button type="button" class="sim-btn" onclick="setDemoFilter('deuteranopia', this)">Deuteranopia (Green-Blind)</button>
+                <button type="button" class="sim-btn" onclick="setDemoFilter('tritanopia', this)">Tritanopia (Blue-Blind)</button>
+                <button type="button" class="sim-btn" onclick="setDemoFilter('achromatopsia', this)">Achromatopsia (Total)</button>
+              </div>
+            </div>
+
+            <h2>5. Clinical Takeaways</h2>
+            <p>
+              Color vision deficiency does not typically progress over time when inherited congenitally. However, sudden acquired alterations in color perception can signal underlying ocular or neurological conditions—including optic neuritis, glaucoma, macular degeneration, or diabetic retinopathy.
+            </p>
+            <p>
+              If you experience sudden shifts in color discrimination, schedule an immediate comprehensive ocular examination.
+            </p>
+
+            <div style="margin-top: 2.5rem; text-align: center;">
+              <a href="index.html" class="btn btn-primary btn-lg">Take the Interactive Color Vision Test →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+          <div class="sidebar-card">
+            <h3>Quick Screening Tool</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Screen your color discrimination with our 20-plate Ishihara test right now.
+            </p>
+            <a href="index.html" class="btn btn-primary btn-sm" style="width: 100%;">Launch Color Test →</a>
+          </div>
+
+          <div class="sidebar-card">
+            <div class="ad-slot ad-slot-sidebar"></div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>TraitCompass Articles</h3>
+            <ul class="sidebar-links">
+              <li><a href="social-anxiety-triggers.html">→ Social Anxiety Triggers Guide</a></li>
+              <li><a href="sociopath-traits.html">→ Sociopath & ASPD Traits Breakdown</a></li>
+              <li><a href="high-functioning-depression.html">→ High-Functioning Depression Screener</a></li>
+              <li><a href="about.html">→ Test Methodology & Disclaimers</a></li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+            </div>
+            <span class="brand-title">TraitCompass</span>
+          </div>
+          <p>Educational visual screening tools and scientific health guides for self-insight and cognitive wellness.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Vision Screening</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Color Vision Test</a></li>
+            <li><a href="learn.html">Vision Science</a></li>
+            <li><a href="about.html#methodology">Plate Methodology</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Health Articles</h4>
+          <ul class="footer-links">
+            <li><a href="social-anxiety-triggers.html">Social Anxiety Triggers</a></li>
+            <li><a href="sociopath-traits.html">Sociopath & ASPD Traits</a></li>
+            <li><a href="high-functioning-depression.html">High-Functioning Depression</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About & Methodology</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="ads.txt">ads.txt</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span id="currentYear">2026</span> TraitCompass. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">Terms & Disclaimers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="ads.js"></script>
+  <script>
+    function setDemoFilter(type, btn) {
+      document.querySelectorAll('.sim-controls .sim-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const box = document.getElementById('demoSwatchContainer');
+      box.className = '';
+      if (type !== 'normal') {
+        box.classList.add(`sim-${type}`);
+      }
+    }
+  </script>
+</body>
+</html>

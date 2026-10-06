@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Color Vision Test (Ishihara) & Health Screening | TraitCompass</title>
+  <meta name="description" content="Free, clinical-grade interactive Ishihara color blindness test. Screen for red-green (protan/deutan) and blue-yellow (tritan) deficiencies with instant diagnostic feedback.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230d9488'/><circle cx='38' cy='45' r='14' fill='%23f59e0b'/><circle cx='62' cy='55' r='14' fill='%23ef4444'/></svg>">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-test" class="skip-to-content">Skip to Color Vision Test</a>
+
+  <!-- Embedded SVG Color Blindness Simulation Matrices (Brettel / Machado standard) -->
+  <svg style="display: none;" aria-hidden="true">
+    <defs>
+      <filter id="protanopia-filter">
+        <feColorMatrix type="matrix" values="0.567, 0.433, 0, 0, 0  0.558, 0.442, 0, 0, 0  0, 0.242, 0.758, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <filter id="deuteranopia-filter">
+        <feColorMatrix type="matrix" values="0.625, 0.375, 0, 0, 0  0.7, 0.3, 0, 0, 0  0, 0.3, 0.7, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+      <filter id="tritanopia-filter">
+        <feColorMatrix type="matrix" values="0.95, 0.05, 0, 0, 0  0, 0.433, 0.567, 0, 0  0, 0.475, 0.525, 0, 0  0, 0, 0, 1, 0"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Sticky Header Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand" aria-label="TraitCompass Home">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
+            <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line>
+            <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line>
+            <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span class="brand-title">TraitCompass</span>
+          <span class="brand-subtitle">Health & Vision Screening</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Nav Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link active">Color Vision Test</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-link" aria-haspopup="true">Health Articles ▾</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="social-anxiety-triggers.html" class="dropdown-item">
+                  <strong>Social Anxiety Triggers</strong>
+                  <small>Assessment, triggers & coping toolkit</small>
+                </a>
+              </li>
+              <li>
+                <a href="sociopath-traits.html" class="dropdown-item">
+                  <strong>Sociopath & ASPD Traits</strong>
+                  <small>Clinical checklist & red flags</small>
+                </a>
+              </li>
+              <li>
+                <a href="high-functioning-depression.html" class="dropdown-item">
+                  <strong>High-Functioning Depression</strong>
+                  <small>Symptom guide & self-reflection quiz</small>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="learn.html" class="nav-link">Vision Science</a></li>
+          <li><a href="about.html" class="nav-link">About & Disclaimers</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+          <li><a href="privacy.html" class="nav-link">Privacy</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Controls (High Contrast, Dark Mode, Mobile Hamburger) -->
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="contrastToggle" title="Toggle High Contrast Mode" aria-label="Toggle High Contrast Mode">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 1 0 20Z" fill="currentColor"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="icon-btn" id="themeToggle" title="Toggle Dark/Light Theme" aria-label="Toggle Dark/Light Theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="main-content" id="main-test">
+    <div class="container">
+      
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-badge">
+          <span class="badge badge-primary">Online Color Vision Screening Tool</span>
+        </div>
+        <h1 class="hero-title">Interactive Ishihara Color Vision Test</h1>
+        <p class="hero-desc">
+          Screen your spectral color perception across 20 calibrated pseudo-isochromatic plates. 
+          Receive instant screening results and educational insights on color perception variations.
+        </p>
+
+        <!-- Screening Disclaimer Callout -->
+        <aside class="clinical-notice" role="note">
+          <div class="notice-icon">ℹ️</div>
+          <div>
+            <strong>Important Screening Disclaimer:</strong> 
+            This online color-vision screening tool is intended for educational and informational purposes only. It is not a medical examination and cannot diagnose a color-vision deficiency or other eye condition. Results may be affected by your display, brightness, lighting, and other factors. If you have concerns about your color vision, consult a qualified eye-care professional.
+          </div>
+        </aside>
+      </section>
+
+      <!-- Sponsored Top Ad Unit -->
+      <div class="ad-slot-wrapper">
+        <div class="ad-slot ad-slot-leaderboard"></div>
+      </div>
+
+      <!-- Test Application Container -->
+      <div class="test-wrapper">
+        <div class="test-card">
+          
+          <!-- STEP 1: PRE-TEST INSTRUCTIONS -->
+          <div id="testIntroScreen">
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Pre-Test Calibration & Setup Guidelines</h2>
+            <p style="text-align: center; max-width: 620px; margin: 0 auto 1.5rem;">
+              Because digital displays reproduce color differently than printed Ishihara plates, please adjust your device settings for optimal screening consistency:
+            </p>
+
+            <div class="instructions-box">
+              <div class="instruction-step">
+                <div class="step-icon">☀️</div>
+                <h4>Screen Brightness</h4>
+                <p>Set your display brightness to 70% or higher. Avoid direct overhead glare or reflections.</p>
+              </div>
+
+              <div class="instruction-step">
+                <div class="step-icon">👓</div>
+                <h4>Disable Color Filters</h4>
+                <p>Turn off Night Shift, TrueTone, f.lux, or blue-light blocking tinted lenses.</p>
+              </div>
+
+              <div class="instruction-step">
+                <div class="step-icon">📏</div>
+                <h4>Viewing Distance</h4>
+                <p>Sit at an arm’s length (~50–75 cm) directly facing your screen without tilting.</p>
+              </div>
+
+              <div class="instruction-step">
+                <div class="step-icon">⏱️</div>
+                <h4>Pacing & Ambience</h4>
+                <p>Spend 3–5 seconds per plate in a moderately lit room with neutral ambient light.</p>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+              <button type="button" class="btn btn-primary btn-lg" id="startTestBtn">
+                Start 20-Plate Color Test →
+              </button>
+              <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 0.8rem;">
+                Estimated duration: ~3 minutes • 100% Free & Private (Zero Data Stored or Transmitted)
+              </p>
+            </div>
+          </div>
+
+          <!-- STEP 2: ACTIVE TEST INTERFACE (Dynamically toggled by script.js) -->
+          <div id="testActiveScreen" style="display: none;">
+            <div class="test-header">
+              <div class="test-progress-info">
+                <span class="progress-pill" id="testProgressText">Plate 1 of 20</span>
+                <span class="badge badge-info" id="plateTypeBadge">Interactive Plate</span>
+              </div>
+              <div class="timer-pill">
+                <span>⏱️ Recommended: 3–5s</span>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-track" aria-label="Test progress">
+              <div class="progress-fill" id="testProgressFill" style="width: 5%;"></div>
+            </div>
+
+            <!-- Canvas Stage -->
+            <div class="test-stage">
+              <div class="plate-frame">
+                <canvas id="ishiharaCanvas" width="340" height="340" aria-label="Ishihara Color Vision Test Plate Canvas"></canvas>
+              </div>
+
+              <div class="plate-prompt">
+                <h3 id="platePrompt">What number do you see in the circle?</h3>
+                <p class="text-muted">Select the number you see or choose "Nothing" if unidentifiable.</p>
+              </div>
+
+              <!-- Multiple Choice Answer Options -->
+              <div class="answer-grid" id="optionsGrid" role="group" aria-label="Test Plate Options">
+                <!-- Dynamically populated by script.js -->
+              </div>
+
+              <!-- Secondary Controls -->
+              <div class="answer-actions">
+                <button type="button" class="btn btn-secondary btn-sm" id="skipBtn">
+                  Can’t see anything / Nothing
+                </button>
+              </div>
+
+              <!-- Manual Input Row for Keyboard / Accessibility -->
+              <div class="manual-input-row" style="margin-top: 1.5rem;">
+                <label for="manualAnswerInput" class="visually-hidden" style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Or enter number:</label>
+                <input type="text" id="manualAnswerInput" placeholder="Or type number here..." maxlength="3" autocomplete="off" aria-label="Type number here">
+                <button type="button" class="btn btn-primary btn-sm" id="manualSubmitBtn">Submit</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: RESULTS & DIAGNOSTIC REPORT (Dynamically toggled by script.js) -->
+          <div id="testResultsScreen" style="display: none;" class="results-screen">
+            <div class="result-hero">
+              <div class="result-gauge-wrap" id="resultGaugeWrap">
+                <div class="result-gauge-inner">
+                  <div class="result-gauge-number" id="resultScoreNumber">100%</div>
+                  <div class="result-gauge-label">Score</div>
+                </div>
+              </div>
+
+              <div class="result-verdict verdict-normal" id="resultVerdict">
+                Normal Color Discrimination Indicated
+              </div>
+              
+              <p class="result-summary-text" id="resultSummaryText">
+                Your responses match standard trichromatic cone function. All red-green, blue-yellow, and contrast plates were accurately identified.
+              </p>
+
+              <!-- Results Disclaimer Notice -->
+              <div class="clinical-notice" role="note" style="margin: 1.5rem auto 0; text-align: left; max-width: 650px;">
+                <div class="notice-icon">ℹ️</div>
+                <div>
+                  <strong>Screening Results Notice & Limitations:</strong>
+                  This online screening is intended for educational and informational purposes only. It is not a medical examination and cannot diagnose a color-vision deficiency or other eye condition. Results may be affected by your display, brightness, lighting, and other factors. If you have concerns about your color vision, consult a qualified eye-care professional.
+                </div>
+              </div>
+            </div>
+
+            <!-- Screening Axis Breakdown -->
+            <h3 style="margin-bottom: 1rem;">Perceptual Axis Performance</h3>
+            <div class="diagnostic-grid">
+              
+              <div class="diag-card">
+                <div class="diag-header">
+                  <span class="diag-title">Red-Green Axis (L & M Cones)</span>
+                  <span class="badge badge-primary">Protan / Deutan</span>
+                </div>
+                <div class="diag-bar-track">
+                  <div class="diag-bar-fill" id="rgAxisBar" style="width: 100%; background: var(--success);"></div>
+                </div>
+                <div class="diag-stat">
+                  <span>Sensitivity score</span>
+                  <strong id="rgAxisLabel">100% Normal</strong>
+                </div>
+              </div>
+
+              <div class="diag-card">
+                <div class="diag-header">
+                  <span class="diag-title">Blue-Yellow Axis (S Cones)</span>
+                  <span class="badge badge-info">Tritan</span>
+                </div>
+                <div class="diag-bar-track">
+                  <div class="diag-bar-fill" id="byAxisBar" style="width: 100%; background: var(--info);"></div>
+                </div>
+                <div class="diag-stat">
+                  <span>Sensitivity score</span>
+                  <strong id="byAxisLabel">100% Normal</strong>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Interactive Color Vision Simulator -->
+            <div class="sim-preview-box">
+              <h4 style="margin-bottom: 0.5rem;">Interactive Vision Simulator</h4>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Compare how this plate appears under different simulated cone variations using calibrated perception filters:
+              </p>
+              
+              <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                <canvas id="simSampleCanvas" width="220" height="220" style="border-radius: var(--radius-full); width: 200px; height: 200px; border: 2px solid var(--border-color);"></canvas>
+              </div>
+
+              <div class="sim-controls">
+                <button type="button" class="sim-btn active" data-sim="normal">Normal (Trichromacy)</button>
+                <button type="button" class="sim-btn" data-sim="protanopia">Protanopia (Red-Blind)</button>
+                <button type="button" class="sim-btn" data-sim="deuteranopia">Deuteranopia (Green-Blind)</button>
+                <button type="button" class="sim-btn" data-sim="tritanopia">Tritanopia (Blue-Blind)</button>
+                <button type="button" class="sim-btn" data-sim="achromatopsia">Achromatopsia (Total)</button>
+              </div>
+            </div>
+
+            <!-- Detailed Plate by Plate Table -->
+            <div class="breakdown-section">
+              <h3 style="margin-bottom: 0.75rem;">Plate-by-Plate Screening Summary</h3>
+              <div class="table-responsive">
+                <table class="breakdown-table">
+                  <thead>
+                    <tr>
+                      <th>Plate</th>
+                      <th>Your Answer</th>
+                      <th>Expected (Normal)</th>
+                      <th>Color-Deficient Impression</th>
+                      <th>Status</th>
+                      <th>Screening Purpose</th>
+                    </tr>
+                  </thead>
+                  <tbody id="breakdownTableBody">
+                    <!-- Populated by script.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Result Action Buttons -->
+            <div class="result-footer-actions">
+              <button type="button" class="btn btn-outline" id="retakeTestBtn">
+                ↺ Retake Test
+              </button>
+              <button type="button" class="btn btn-secondary" id="printResultsBtn">
+                🖨️ Print Screening Summary
+              </button>
+              <a href="learn.html" class="btn btn-primary">
+                Read Science of Vision →
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TraitCompass Educational Hub Integration Section -->
+      <section style="margin-top: 4.5rem;">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 2.5rem;">
+          <span class="badge badge-info">TraitCompass Health Library</span>
+          <h2 style="margin-top: 0.5rem;">Explore Evidence-Based Health Assessments</h2>
+          <p>Scientific self-reflection tools, diagnostic checklists, and clinical perspectives on neurodiversity and mental wellbeing.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          
+          <!-- Article Card 1 -->
+          <article class="sidebar-card" style="display: flex; flex-direction: column;">
+            <div style="margin-bottom: 0.75rem;">
+              <span class="badge badge-warning">Behavioral Science</span>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; border: none; padding: 0;">
+              <a href="social-anxiety-triggers.html" style="color: var(--text-main);">Social Anxiety Triggers & Neurobiology</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); flex: 1;">
+              Understand the amygdala trigger cycle, the spotlight illusion, and take our 8-item interactive self-assessment quiz.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="social-anxiety-triggers.html" class="btn btn-outline btn-sm">Read Guide & Take Quiz →</a>
+            </div>
+          </article>
+
+          <!-- Article Card 2 -->
+          <article class="sidebar-card" style="display: flex; flex-direction: column;">
+            <div style="margin-bottom: 0.75rem;">
+              <span class="badge badge-danger">Clinical Psychology</span>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; border: none; padding: 0;">
+              <a href="sociopath-traits.html" style="color: var(--text-main);">Sociopath & ASPD Traits: The Diagnostic Spectrum</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); flex: 1;">
+              Distinguish colloquial labels from DSM-5 Antisocial Personality Disorder, neurocognitive empathy deficits, and relationship boundaries.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="sociopath-traits.html" class="btn btn-outline btn-sm">Read Breakdown →</a>
+            </div>
+          </article>
+
+          <!-- Article Card 3 -->
+          <article class="sidebar-card" style="display: flex; flex-direction: column;">
+            <div style="margin-bottom: 0.75rem;">
+              <span class="badge badge-primary">Mood & Vitality</span>
+            </div>
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; border: none; padding: 0;">
+              <a href="high-functioning-depression.html" style="color: var(--text-main);">High-Functioning Depression & Burnout</a>
+            </h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); flex: 1;">
+              How perfectionism masks persistent depressive disorder (dysthymia). Includes an interactive self-reflection screener.
+            </p>
+            <div style="margin-top: 1rem;">
+              <a href="high-functioning-depression.html" class="btn btn-outline btn-sm">Take Assessment →</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4"></circle>
+              </svg>
+            </div>
+            <span class="brand-title">TraitCompass</span>
+          </div>
+          <p>
+            Evidence-based psychometric tools, visual screening tests, and scientific health guides designed for self-insight and cognitive wellness.
+          </p>
+          <div class="footer-disclaimer-short">
+            Screening tools provided for educational evaluation only. Not a medical diagnosis.
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Vision Screening</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ishihara Test (20 Plates)</a></li>
+            <li><a href="learn.html">Vision Science & Cones</a></li>
+            <li><a href="learn.html#simulator">Color Blindness Simulator</a></li>
+            <li><a href="about.html#methodology">Plate Methodology</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Health Articles</h4>
+          <ul class="footer-links">
+            <li><a href="social-anxiety-triggers.html">Social Anxiety Triggers</a></li>
+            <li><a href="sociopath-traits.html">Sociopath & ASPD Traits</a></li>
+            <li><a href="high-functioning-depression.html">High-Functioning Depression</a></li>
+            <li><a href="about.html#references">Scientific References</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Information</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About & Methodology</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy.html">Privacy Policy & Cookies</a></li>
+            <li><a href="privacy.html#data">Client-Side Processing</a></li>
+            <li><a href="ads.txt">Ad Publisher (ads.txt)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © <span id="currentYear">2026</span> TraitCompass. All rights reserved.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">Terms & Disclaimers</a>
+          <a href="learn.html">Anatomy of Vision</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="ads.js"></script>
+</body>
+</html>

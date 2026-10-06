@@ -1,0 +1,10 @@
+# TraitCompass - Authorized Digital Sellers (ads.txt)
+# ==============================================================================
+# IMPORTANT INSTRUCTION FOR SITE OWNER:
+# When your Google AdSense account is approved, replace 'pub-XXXXXXXXXXXXXXXX'
+# with your actual 16-digit AdSense Publisher ID (e.g., pub-1234567890123456)
+# and ensure the line is active.
+#
+# Specification Reference: IAB Tech Lab ads.txt standard
+# ==============================================================================
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
